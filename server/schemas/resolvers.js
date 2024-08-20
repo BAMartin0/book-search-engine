@@ -12,7 +12,7 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
+    addUser: async (parent, { username, email, password }, context) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
@@ -48,10 +48,10 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeBook: async (parent, { bookData }, context) => {
+    removeBook: async (parent, { bookId }, context) => {
         if (context.user) {
             const userData = await User.findOneAndDelete(
-                { _id: context.user._id }, { $pull: { savedBooks: bookData } }, { new: true }
+                { _id: context.user._id }, { $pull: { savedBooks: bookId } }, { new: true }
             ); 
 
             return userData

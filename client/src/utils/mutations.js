@@ -1,56 +1,64 @@
-//Not sure if removebook is properly written
+import { gql } from "@apollo/client";
 
-// mutation addUser($username: String!, $email: String!, $password: String!) {
-//   addUser(username: $username, email: $email, password: $password) {
-//     token
-//     user {
-//       _id
-//       username
-//       email
-//     }
-//   }
-// }
+export const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        username
+        _id
+      }
+    }
+  }
+`;
 
-// mutation login($email: String!, $password: String!) {
-//   login(email: $email, password: $password) {
-//     token
-//     user {
-//       email
-//       _id
-//     }
-//   }
-// }
+export const ADD_USER = gql`
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
 
-// mutation saveBook($bookData: BookObject) {
-//   saveBook(bookData: $bookData) {
-//     _id
-//     username
-//     email
-//     bookCount
-//     savedBooks {
-//       bookId
-//       authors
-//       description
-//       image
-//       link
-//       title
-//     }
-//   }
-// }
+export const SAVE_BOOK = gql`
+  mutation saveBook($bookData: BookObject) {
+    saveBook(bookData: $bookData) {
+      _id
+      username
+      email
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        description
+        image
+        link
+        title
+      }
+    }
+  }
+`;
 
-// mutation removeBook($bookId: ID) {
-//   removeBook(bookId: $bookId) {
-//     _id
-//     username
-//     email
-//     bookCount
-//     savedBooks {
-//       bookId
-//       authors
-//       description
-//       image
-//       link
-//       title
-//     }
-//   }
-// }
+export const REMOVE_BOOK = gql`
+  mutation removeBook($bookId: ID) {
+    removeBook(bookId: $bookId) {
+      _id
+      username
+      email
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        description
+        image
+        link
+        title
+      }
+    }
+  }
+`;
